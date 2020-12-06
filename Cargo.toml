@@ -1,0 +1,16 @@
+[package]
+name = "stremio_sub_addon"
+version = "0.1.0"
+authors = ["Gérald Lelong <gerald.lelong@easymov.fr>"]
+edition = "2018"
+
+[dependencies]
+stremio-core = { git = "https://github.com/stremio/stremio-core" }
+semver = "*"
+futures = "0.1"
+tokio = { version = "0.2", features = ["full"] }
+stremio-addon-sdk = {git = "https://github.com/sleeyax/stremio-addon-sdk/"}
+
+[lib]
+name = "serverless"
+path = "src/serverless.rs"
