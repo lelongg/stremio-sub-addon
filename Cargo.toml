@@ -10,6 +10,7 @@ semver = "*"
 futures = "0.1"
 tokio = { version = "0.2", features = ["full"] }
 stremio-addon-sdk = {git = "https://github.com/sleeyax/stremio-addon-sdk/"}
+now_lambda = "0.1.3"
 
 [lib]
 name = "serverless"

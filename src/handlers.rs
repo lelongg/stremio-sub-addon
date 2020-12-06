@@ -1,9 +1,9 @@
+use futures::future;
+use stremio_addon_sdk::builder::Builder;
 use stremio_addon_sdk::builder::BuilderWithHandlers;
 use stremio_core::state_types::EnvFuture;
 use stremio_core::types::addons::*;
 use stremio_core::types::*;
-use stremio_addon_sdk::builder::Builder;
-use futures::future;
 
 fn handle_stream(resource: &ResourceRef) -> EnvFuture<ResourceResponse> {
     let mut streams = vec![];
@@ -19,8 +19,8 @@ fn handle_stream(resource: &ResourceRef) -> EnvFuture<ResourceResponse> {
         });
     }
     dbg!(&streams);
-    
-    return Box::new(future::ok(ResourceResponse::Streams {streams}));
+
+    Box::new(future::ok(ResourceResponse::Streams { streams }))
 }
 
 /* fn handle_meta(req: &ResourceRef) -> EnvFuture<ResourceResponse> {
@@ -29,20 +29,23 @@ fn handle_stream(resource: &ResourceRef) -> EnvFuture<ResourceResponse> {
 } */
 
 fn handle_catalog(_resource: &ResourceRef) -> EnvFuture<ResourceResponse> {
-    Box::new(future::ok(ResourceResponse::Metas {metas: vec![
-        MetaPreview {
+    Box::new(future::ok(ResourceResponse::Metas {
+        metas: vec![MetaPreview {
             id: "tt1254207".into(),
             name: "Big buck Bunny".into(),
-            poster: Some("https://image.tmdb.org/t/p/w600_and_h900_bestv2/uVEFQvFMMsg4e6yb03xOfVsDz4o.jpg".into()),
+            poster: Some(
+                "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uVEFQvFMMsg4e6yb03xOfVsDz4o.jpg"
+                    .into(),
+            ),
             description: Some("addon test".into()),
             type_name: "others".into(),
             ..Default::default()
-        }
-    ]}))
+        }],
+    }))
 }
 
 pub fn build(manifest: Manifest) -> BuilderWithHandlers {
-     Builder::new(manifest)
+    Builder::new(manifest)
         .define_catalog_handler(handle_catalog)
         .define_stream_handler(handle_stream)
         .build()

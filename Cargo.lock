@@ -1057,6 +1057,7 @@ name = "stremio_sub_addon"
 version = "0.1.0"
 dependencies = [
  "futures",
+ "now_lambda",
  "semver",
  "stremio-addon-sdk",
  "stremio-core",
